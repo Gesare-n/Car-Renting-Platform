@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -12,6 +10,9 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
 import NoPage from './pages/NoPage'
+import { CarProvider } from './context/CarContext'
+import UpdateCar from './pages/UpdateCar'
+import Dashboard from './pages/Dashboard'
 
 
 function App() {
@@ -20,11 +21,14 @@ function App() {
   return (
     <BrowserRouter>
     <UserProvider>
+      <CarProvider>
      <Routes>
        <Route path='/' element={<Layout />}>
           <Route path='/' element={<Home />} />
+          <Route path='/dashboard' element={<Dashboard />}/>
           <Route path='/about' element={<About />} />
           <Route path='/addcar 'element={<AddCar/>} />
+          <Route path='/car/:car_id' element={<UpdateCar />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
@@ -32,6 +36,7 @@ function App() {
           <Route path="*" element={<NoPage />} />
         </Route>
      </Routes>
+     </CarProvider>
      </UserProvider>
    </BrowserRouter>
   )

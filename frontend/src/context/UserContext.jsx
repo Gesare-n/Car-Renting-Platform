@@ -17,15 +17,17 @@ export const UserProvider = ({ children }) =>
 
     // All your functions and state variables will be available to all the children components that are wrapped in the UserProvider
    //    REGISTER USER
-    const register_user = (name,email, phone_number,is_organizer, password) =>{
-        fetch(`${server_url}/users`, {
+    const register_user = (name,email, profile_image, phone_number,is_carowner, password) =>{
+        
+        fetch("http://localhost:5000/users", {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
                 email: email,
+                profile_image: profile_image,
                 password: password,
                 phone_number: phone_number,
-                is_organizer: is_organizer
+                is_carowner: is_carowner
             }),
             headers: {
               'Content-type': 'application/json',
@@ -52,7 +54,7 @@ export const UserProvider = ({ children }) =>
 
        //    Login USER
        const login_user = (email, password) =>{
-        fetch(`${server_url}/login`, {
+        fetch("http://localhost:5000/login", {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
@@ -71,7 +73,7 @@ export const UserProvider = ({ children }) =>
                 localStorage.setItem("access_token", res.access_token)
 
                 toast.success("Logged in Successfully!")
-                nav("/dashboard")
+                nav("/")
             }
             else if(res.error)
             {
@@ -87,14 +89,14 @@ export const UserProvider = ({ children }) =>
 
 
        //    Update USER
-       const update_user = (name, phone_number,is_organizer, password) =>{
+       const update_user = (name, phone_number,is_carowner, password) =>{
         fetch(`${server_url}/users`, {
             method: 'PUT',
             body: JSON.stringify({
                 name: name,
                 password: password,
                 phone_number: phone_number,
-                is_organizer: is_organizer
+                is_carowner: is_carowner
             }),
             headers: {
               'Content-type': 'application/json',

@@ -10,10 +10,11 @@ function Register()
   const [password, setPassword] = useState()
   const [repeatPassword, setRepeatPassword] = useState()
   const [name, setName] = useState()
+  const [profile_image, setProfileImage] = useState()
   const [phone_number, setPhone_number] = useState()
-  const [is_organizer, setIs_organizer] = useState("false")
+  const [is_carowner, setIsCarOwner] = useState("false")
 
-  console.log(email, password, repeatPassword, name, phone_number, is_organizer);
+  console.log(email, password,profile_image, repeatPassword, name, phone_number, is_carowner);
   function handleSubmit(e){
     e.preventDefault()
 
@@ -22,13 +23,14 @@ function Register()
       return
     }
 
-    register_user(name,email, phone_number,is_organizer, password)
+    register_user(name,email,profile_image, phone_number,is_carowner, password)
     setEmail("")
     setPassword("")
     setRepeatPassword("")
+    setProfileImage("")
     setName("")
     setPhone_number("")
-    is_organizer("false")
+    setIsCarOwner("false")
   }
 
 
@@ -44,11 +46,15 @@ function Register()
             <form onSubmit={handleSubmit}>
             <div className="mb-5">
                 <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                <input type="email" value={email || ""} onChange={(e)=> setEmail(e.target.value)} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required />
+                <input type="email" value={email || ""} onChange={(e)=> setEmail(e.target.value)} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@example.com" required />
             </div>
             <div className="mb-5">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                 <input type="text" value={name || ""} onChange={(e)=> setName(e.target.value)} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="John Doe" required />
+            </div>
+            <div className="mb-5">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image</label>
+                <input type="text" value={profile_image || ""} onChange={(e)=> setProfileImage(e.target.value)} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="http:www.example.com" required />
             </div>
             <div className="mb-5">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
@@ -65,7 +71,7 @@ function Register()
 
             <div className="mb-5">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Register as</label>
-            <select onChange={ e => setIs_organizer(e.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select onChange={ e => setIsCarOwner(e.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
               {/* <option selected>Choose a country</option> */}
               <option selected value="false">User</option>
               <option value="true">Car Owner</option>
