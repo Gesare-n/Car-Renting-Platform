@@ -48,7 +48,7 @@ def create_user():
     )
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({'message': 'User registered successfully'}), 201
+    return jsonify({'success': 'User registered successfully'}), 201
 
 # User Login
 @app.route('/login', methods=['POST'])
@@ -60,7 +60,7 @@ def login():
         access_token = create_access_token(identity= user.id)
         return jsonify({'access_token': access_token})
     else:
-        return jsonify({'message': 'Invalid credentials'}), 401
+        return jsonify({'success': 'Invalid credentials'}), 401
     
 @app.route('/current_user', methods=["GET"])
 @jwt_required()
@@ -87,7 +87,7 @@ def check_if_token_in_blacklist(jwt_header, decrypted_token):
 def logout():
     jti = get_jwt()["jti"]
     BLACKLIST.add(jti)
-    return jsonify({"message": "Successfully logged out"}), 200
+    return jsonify({"success": "Successfully logged out"}), 200
 
 
 @app.route('/users', methods=['GET'])
@@ -112,7 +112,7 @@ def get_users():
     
 # Car operations
 @app.route('/cars', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def create_car():
     
     current_user_id= get_jwt_identity()

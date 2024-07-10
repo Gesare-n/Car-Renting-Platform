@@ -19,7 +19,7 @@ export const CarProvider = ({ children }) =>
 
     // All your functions and state variables will be available to all the children components that are wrapped in the UserProvider
     const add_car = (car_model, year, availability_status, price, car_image_url) =>{
-        fetch(`${server_url}/events`, {
+        fetch("http://localhost:5000/cars", {
             method: 'POST',
             body: JSON.stringify({
                 car_model, year, availability_status, price, car_image_url
@@ -50,7 +50,7 @@ export const CarProvider = ({ children }) =>
     
     }
 
-    // Register to attend an event
+   
     const register_for_an_event = (event_id) =>{
         fetch(`${server_url}/registrations`, {
             method: 'POST',
@@ -82,8 +82,7 @@ export const CarProvider = ({ children }) =>
     
     }
 
-    //    Fetch all events
-
+  
     useEffect(()=>{
         if(auth_token)
         {

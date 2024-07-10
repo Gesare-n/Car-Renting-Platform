@@ -47,7 +47,7 @@ function Profile()
         <div class="relative flex h-32 w-full justify-center rounded-xl bg-cover" >
             <img src='https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/banner.ef572d78f29b0fee0a09.png' class="absolute flex h-32 w-full justify-center rounded-xl bg-cover" /> 
             <div class="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-green-400 dark:!border-navy-700">
-                <img class="h-full w-full rounded-full" src='https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/avatar11.1060b63041fdffa5f8ef.png' alt="" />
+                <img class="h-full w-full rounded-full" src={currentUser.profile_image} alt="" />
             </div>
         </div> 
         <div class="mt-16 flex flex-col items-center">
@@ -61,10 +61,10 @@ function Profile()
                 currentUser && currentUser.is_admin?
                 <p class="bg-green-800 text-base font-normal text-white p-2 rounded-lg my-4">Admin</p>
                 :
-                currentUser && currentUser.is_organizer?
+                currentUser && currentUser.is_carowner?
                 <p class="bg-green-800 text-base font-normal text-white p-2 rounded-lg my-4">Car Owner</p>
                 :
-                <p class="bg-green-800 text-base font-normal text-white p-2 rounded-lg my-4">Attendee</p>
+                <p class="bg-green-800 text-base font-normal text-white p-2 rounded-lg my-4">User</p>
             }
         </div> 
         <div class="mt-6 mb-3 ">

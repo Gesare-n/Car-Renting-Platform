@@ -123,7 +123,7 @@ export const UserProvider = ({ children }) =>
 
     // Logout
     const logout = () =>{
-        fetch(`${server_url}/logout`, {
+        fetch("http://localhost:5000/logout", {
             method: 'DELETE',
             headers: {
               'Content-type': 'application/json',
@@ -138,6 +138,7 @@ export const UserProvider = ({ children }) =>
                 setCurrentUser(null)
                 setAuth_token(null)
                 setOnChange(!onChange)
+                nav("/login")
                 toast.success(res.success)
             }
             else if(res.error)
