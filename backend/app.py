@@ -168,8 +168,8 @@ def update_car(id):
 
 
 @app.route('/users', methods=['PUT'])
-@jwt_required
-def update_user():
+@jwt_required()
+def update_profile():
     data = request.get_json()
     loggedin_user_id = get_jwt_identity()
     user = User.query.get(loggedin_user_id)
@@ -178,18 +178,21 @@ def update_user():
         return jsonify({"error": "User not found"}), 404
     
     user.name = data.get('name', user.name)
-    # user.email = data.get('email', user.email)
+    user.email = data.get('email', user.email)
     user.password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
     user.is_carowner = data.get('is_carowner', user.is_carowner)
-    # user.profile_image = data.get('profile_image', user.profile_image)
+    user.profile_image = data.get('profile_image', user.profile_image)
     user.phone_number = data.get('phone_number', user.phone_number)
 
     db.session.commit()
     return jsonify({"success": "User updated successfully"}), 200
 
 @app.route('/users/<int:id>', methods=['DELETE'])
+@jwt_required()
 def delete_user(id):
-    user = User.query.get(id)
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
+    # user = User.query.get(id)
     if user is None:
         return jsonify({"error": "User not found"}), 404
     db.session.delete(user)

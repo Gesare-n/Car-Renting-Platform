@@ -13,6 +13,7 @@ import NoPage from './pages/NoPage'
 import { CarProvider } from './context/CarContext'
 import UpdateCar from './pages/UpdateCar'
 import Dashboard from './pages/Dashboard'
+import UpdateUser from './pages/UpdateUser'
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/updateuser' element={<UpdateUser />} />
 
           <Route path="*" element={<NoPage />} />
         </Route>
