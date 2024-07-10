@@ -90,7 +90,7 @@ export const UserProvider = ({ children }) =>
 
        //    Update USER
        const update_user = (name, phone_number,is_carowner, password) =>{
-        fetch(`${server_url}/users`, {
+        fetch("http://localhost:5000/users", {
             method: 'PUT',
             body: JSON.stringify({
                 name: name,

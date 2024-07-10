@@ -1,8 +1,8 @@
-"""initial migration
+"""tables
 
-Revision ID: caac16501c40
+Revision ID: 695b9ece9741
 Revises: 
-Create Date: 2024-07-09 22:45:03.534295
+Create Date: 2024-07-10 17:39:11.991180
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'caac16501c40'
+revision = '695b9ece9741'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,7 +30,7 @@ def upgrade():
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('password', sa.String(length=255), nullable=False),
-    sa.Column('is_carowner', sa.Boolean(), nullable=False),
+    sa.Column('is_carowner', sa.String(length=255), nullable=False),
     sa.Column('profile_image', sa.String(length=255), nullable=True),
     sa.Column('phone_number', sa.String(length=20), nullable=True),
     sa.PrimaryKeyConstraint('id'),
@@ -53,8 +53,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('car_id', sa.Integer(), nullable=False),
     sa.Column('start_date', sa.String(), nullable=False),
-    sa.Column('end_date', sa.Date(), nullable=False),
-    sa.Column('car_owner_id', sa.Integer(), nullable=False),
+    sa.Column('end_date', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['car_id'], ['cars.id'], name=op.f('fk_bookings_car_id_cars')),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_bookings_user_id_users')),
     sa.PrimaryKeyConstraint('id')
