@@ -9,7 +9,7 @@ export default function AddCar()
 {
 
   const {currentUser} = useContext(UserContext)
-  const {add_event} = useContext(CarContext)
+  const {add_car} = useContext(CarContext)
 
   const nav = useNavigate()
   const [car_model, setCarModel] = useState()
@@ -20,13 +20,13 @@ export default function AddCar()
 
   function handleSubmit(e){
     e.preventDefault()
-     add_event(car_model, year, availability_status, price, car_image_url)
+     add_car(car_model, year, availability_status, price, car_image_url)
 
 
   }
   return (
     <div>
-    { currentUser && currentUser.is_carowner?
+    { currentUser && currentUser.is_carowner == "true"?
     <div className='grid grid-cols-2 h-[80vh] mt-6'>
       <div className='bg-gray-800 text-white flex justify-center items-center'>
         <h1 className='text-6xl font-bold'>Add New Car </h1>

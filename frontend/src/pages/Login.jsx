@@ -12,10 +12,7 @@ export default function Login()
 
     function handleSubmit(e){
         e.preventDefault()
-
         login_user(email, password)
-
-
         setEmail("")
         setPassword("")
     }

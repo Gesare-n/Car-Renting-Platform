@@ -6,18 +6,14 @@ import { server_url } from "../../config"
 
 export const CarContext = createContext()
 
-export const CarProvider = ({ children }) => E
+export const CarProvider = ({ children }) => 
 {
    const nav = useNavigate()
    const {auth_token} = useContext(UserContext)
 
    const [cars, setCars] = useState([])
 
-
-
-
-
-    // All your functions and state variables will be available to all the children components that are wrapped in the UserProvider
+    
     const add_car = (car_model, year, availability_status, price, car_image_url) =>{
         fetch("http://localhost:5000/cars", {
             method: 'POST',
@@ -48,16 +44,14 @@ export const CarProvider = ({ children }) => E
 
         });
     
-    }
-
-  
+    } 
 
     const contextData ={
         add_car,
         cars,
         
     }
-    return (
+    return(
         <CarContext.Provider value={contextData}>
             {children}
         </CarContext.Provider>

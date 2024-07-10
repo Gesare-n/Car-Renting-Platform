@@ -73,7 +73,7 @@ export const UserProvider = ({ children }) =>
                 localStorage.setItem("access_token", res.access_token)
 
                 toast.success("Logged in Successfully!")
-                nav("/")
+                nav("/dashboard")
             }
             else if(res.error)
             {

@@ -22,12 +22,6 @@ from models import User, CarOwner, Car, Booking
 
 migrate = Migrate(app, db)
 db.init_app(app)
-# Import your routes
-# from backend.routes import *
-
-# # All route definitions_
-
-
 
 # User Registration
 @app.route('/users', methods=['POST'])
@@ -60,7 +54,7 @@ def login():
         access_token = create_access_token(identity= user.id)
         return jsonify({'access_token': access_token})
     else:
-        return jsonify({'success': 'Invalid credentials'}), 401
+        return jsonify({'error': 'Invalid credentials'}), 401
     
 @app.route('/current_user', methods=["GET"])
 @jwt_required()
@@ -108,7 +102,7 @@ def get_users():
                 'phone_number': user.phone_number} for user in users]
         return jsonify(users_data), 200
     else:
-        return jsonify({"message": "You are not authorized to view this resource"}), 401
+        return jsonify({"error": "You are not authorized to view this resource"}), 401
     
 # Car operations
 @app.route('/cars', methods=['POST'])
@@ -131,9 +125,9 @@ def create_car():
         )
         db.session.add(new_car)
         db.session.commit()
-        return jsonify({'message': 'Car added successfully'}), 201
+        return jsonify({'success': 'Car added successfully'}), 201
     else:
-        return jsonify({"message": "You are not authorized to view this resource"}), 401
+        return jsonify({"error": "You are not authorized to view this resource"}), 401
 @app.route('/cars', methods=['GET'])
 @jwt_required()
 def get_cars():
@@ -181,7 +175,7 @@ def update_user():
     user = User.query.get(loggedin_user_id)
 
     if user is None:
-        return jsonify({"message": "User not found"}), 404
+        return jsonify({"error": "User not found"}), 404
     
     user.name = data.get('name', user.name)
     # user.email = data.get('email', user.email)
@@ -197,7 +191,7 @@ def update_user():
 def delete_user(id):
     user = User.query.get(id)
     if user is None:
-        return jsonify({"message": "User not found"}), 404
+        return jsonify({"error": "User not found"}), 404
     db.session.delete(user)
     db.session.commit()
     return jsonify({"success": "User deleted successfully"}), 200
@@ -223,14 +217,14 @@ def create_booking():
         )
         db.session.add(new_booking)
         db.session.commit()
-        return jsonify({'message': 'Booking added successfully'}), 201
+        return jsonify({'success': 'Booking added successfully'}), 201
 
 
 @app.route('/bookings/<int:id>', methods = ['DELETE'])
 def delete_booking(id):
     booking = Booking.query.get(id)
     if booking is None:
-        return jsonify({"message": "Booking not found"}), 404
+        return jsonify({"error": "Booking not found"}), 404
     db.session.delete(booking)
     db.session.commit()
     return jsonify({"success": "Booking deleted successfully"}), 200
