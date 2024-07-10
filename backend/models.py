@@ -19,7 +19,7 @@ class User(db.Model, SerializerMixin):
     name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    is_carowner = db.Column(db.Boolean, nullable=False)
+    is_carowner = db.Column(db.String(255), nullable=False)
     profile_image = db.Column(db.String(255), nullable=True)
     phone_number = db.Column(db.String(20), nullable=True)    
     bookings = db.relationship('Booking', backref='user', lazy=True)

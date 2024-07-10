@@ -42,7 +42,7 @@ def create_user():
         name=request.json.get("name", None),
         email=request.json.get("email", None),
         password= bcrypt.generate_password_hash(request.json.get("password", None)).decode('utf-8'),
-        is_carowner= True if data['is_carowner']=="true" else False,
+        is_carowner= request.json.get("is_carowner", None),
         profile_image=data.get('profile_image'),
         phone_number=data.get('phone_number')
     )
