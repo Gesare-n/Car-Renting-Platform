@@ -6,9 +6,9 @@ function Dashboard()
 {
   const {currentUser} = useContext(UserContext)
   
-  const {events, register_for_an_event} = useContext(CarContext)
+  const {cars, add_car} = useContext(CarContext)
 
-  console.log(events)
+  console.log(cars)
 
  
 

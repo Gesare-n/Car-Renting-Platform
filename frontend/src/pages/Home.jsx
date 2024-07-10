@@ -9,7 +9,7 @@ export default function
   return (
     <div>
        <Landing />
-       {/* {currentUser} */}
+       {currentUser}
     </div>
   )
 }
