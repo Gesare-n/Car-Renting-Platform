@@ -33,8 +33,8 @@ export default function AddCar()
       
     { currentUser && currentUser.is_carowner == "true" ?
     <div className='grid grid-cols-2 h-[80vh] mt-6'>
-      <div className=''>
-        <img src='https://i.pinimg.com/564x/64/af/73/64af737f54572f0d5ac415356269226c.jpg'/>
+      <div className='flex align-center bg-slate-100justify-center'>
+        <img className='h-[80vh] ' src='https://i.pinimg.com/736x/e7/f8/f6/e7f8f681a39670c1daa1eff9cf1a3b59.jpg'/>
         
       </div>
       <div className='p-6 '>
@@ -77,7 +77,7 @@ export default function AddCar()
     </div>
     :
     <div>
-      <h1 className='text-3xl text-center'>You are not authorized to view this page</h1>
+      <h1 className='text-3xl  text-center'>You are not authorized to view this page</h1>
     </div>
 }
 
