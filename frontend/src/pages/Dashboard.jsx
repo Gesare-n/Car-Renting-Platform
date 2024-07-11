@@ -7,9 +7,8 @@ function Dashboard()
 {
   const {currentUser} = useContext(UserContext)
   
-  const {cars} = useContext(CarContext)
+  const {cars, delete_car} = useContext(CarContext)
 
-  console.log("name", cars)
 
  
   return (
@@ -44,15 +43,17 @@ function Dashboard()
               </span>
               </div>
               {currentUser && currentUser.is_carowner== "true" ?
+              
               <Link to ='/updatecar'
-                type="button" onClick = {()=> register_for_an_event(car.id)}
+                type="button" onClick = {()=> update_car(car.id)}
                 className="inline-block rounded bg-blue-700 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
               >
                 Update Car
               </Link>
+             
               :
               <button
-              type="button" onClick = {()=> register_for_an_event(car.id)}
+              type="button" onClick = {()=> handleSubmit(car.id)}
               className="inline-block rounded bg-green-700 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
             >
               Rent Car
