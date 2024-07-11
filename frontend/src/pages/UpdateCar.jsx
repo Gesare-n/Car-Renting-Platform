@@ -6,10 +6,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 export default function UpdateEvent() 
 {
   const nav = useNavigate()
-  const [title, setTitle] = useState()
-  const [comments, setComment] = useState([])
-  const [author, setAuthor] = useState()
-  const [content, setContent] = useState()
+  // const [title, setTitle] = useState()
+  // const [comments, setComment] = useState([])
+  // const [author, setAuthor] = useState()
+  // const [content, setContent] = useState()
 
   const {post_id} = useParams()
 

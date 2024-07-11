@@ -89,7 +89,7 @@ export const UserProvider = ({ children }) =>
 
 
        //    Update USER
-       const update_user = (name, phone_number,profile_image, password) =>{
+       const update_user = (name, profile_image,phone_number, password) =>{
         fetch("http://localhost:5000/users", {
             method: 'PUT',
             body: JSON.stringify({

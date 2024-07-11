@@ -19,9 +19,9 @@ export default function UpdateUser() {
    
     useEffect(()=>{
         setName(currentUser && currentUser.name)
-        setPhone_number(currentUser && currentUser.phone_number)
+        setPhone_number(currentUser && currentUser.profile_image)
         setPassword(currentUser && currentUser.password)
-        setProfileImage(currentUser && currentUser.profile_image)
+        setProfileImage(currentUser && currentUser.phone_number)
     },[currentUser])
 
     function handleSubmit(e){

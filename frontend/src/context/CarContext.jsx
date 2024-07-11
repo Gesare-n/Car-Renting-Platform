@@ -12,6 +12,27 @@ export const CarProvider = ({ children }) =>
    const {auth_token} = useContext(UserContext)
 
    const [cars, setCars] = useState([])
+ //fetch available cars
+   useEffect(()=>{
+       fetch("http://localhost:5000/cars", {
+           headers: {
+             'Content-type': 'application/json',
+             "Authorization": `Bearer ${auth_token}`
+           },
+         })
+       .then((response) => response.json())
+       .then((res) => {
+          setCars(res)
+       });
+   }, [auth_token])
+
+
+      
+  //  const update_car = (id, car_model, year, availability_status, price, car_image_url) => {
+  //      fetch(`http://localhost:5000/cars/${id}`, {
+  //          method: 'PUT',
+  //          body: JSON.stringify({
+  //              car_model, year, availability_status, price, car_image_  
 
     
     const add_car = (car_model, year, availability_status, price, car_image_url) =>{
@@ -28,7 +49,7 @@ export const CarProvider = ({ children }) =>
           })
         .then((response) => response.json())
         .then((res) =>{
-            console.log(res)
+            console.log("hey", res)
          if(res.success)
             {
                 toast.success(res.success)
