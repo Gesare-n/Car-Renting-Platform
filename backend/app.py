@@ -112,14 +112,15 @@ def create_car():
     current_user_id= get_jwt_identity()
     current_user = User.query.get(current_user_id)
     
-    if current_user.is_carowner:
+    if current_user.is_carowner == "true":
         data = request.get_json()
         new_car = Car(
-            name=data['name'],
-            model=data['model'],
-            year=data['year'],
-            price_per_day=data['price_per_day'],
-            availability_status= data['availability_status'],
+
+            name = data["name"],
+            model= data['model'],
+            year= data['year'],
+            price_per_day = data['price_per_day'],
+            # availability_status =  data['availability_status'],
             owner_id= current_user_id,
             car_image_url = data['car_image_url']
         )
@@ -138,7 +139,7 @@ def get_cars():
         'model': car.model,
         'year': car.year,
         'price_per_day': car.price_per_day,
-        'availability_status': car.availability_status,        
+        # 'availability_status': car.availability_status,        
         'car_image_url': car.car_image_url        
     } for car in cars]
     return jsonify(car_list), 200

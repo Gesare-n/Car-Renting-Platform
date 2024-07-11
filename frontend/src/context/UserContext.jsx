@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
-import {server_url} from "../../config"
+
 
 export const UserContext = createContext()
 
@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) =>
 
 
 
-    // All your functions and state variables will be available to all the children components that are wrapped in the UserProvider
+    
    //    REGISTER USER
     const register_user = (name,email, profile_image, phone_number, is_carowner, password) =>{
         

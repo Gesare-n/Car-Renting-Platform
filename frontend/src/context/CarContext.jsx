@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react"
 import { UserContext } from "./UserContext"
 import { toast } from 'react-toastify'
 import { useNavigate } from "react-router-dom"
-import { server_url } from "../../config"
+
 
 export const CarContext = createContext()
 
@@ -10,6 +10,7 @@ export const CarProvider = ({ children }) =>
 {
    const nav = useNavigate()
    const {auth_token} = useContext(UserContext)
+   
 
    const [cars, setCars] = useState([])
  //fetch available cars
@@ -35,11 +36,11 @@ export const CarProvider = ({ children }) =>
   //              car_model, year, availability_status, price, car_image_  
 
     
-    const add_car = (car_model, year, availability_status, price, car_image_url) =>{
+    const add_car = (name, model, year, price_per_day, car_image_url) =>{
         fetch("http://localhost:5000/cars", {
             method: 'POST',
             body: JSON.stringify({
-                car_model, year, availability_status, price, car_image_url
+                name, model, year, price_per_day, car_image_url
                 
             }),
             headers: {
@@ -53,7 +54,7 @@ export const CarProvider = ({ children }) =>
          if(res.success)
             {
                 toast.success(res.success)
-                nav("/")
+                nav("/dashboard")
             }
             else if(res.error)
             {
@@ -70,6 +71,7 @@ export const CarProvider = ({ children }) =>
     const contextData ={
         add_car,
         cars,
+        
         
     }
     return(

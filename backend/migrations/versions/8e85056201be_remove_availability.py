@@ -1,8 +1,8 @@
-"""tables
+"""remove availability
 
-Revision ID: 695b9ece9741
+Revision ID: 8e85056201be
 Revises: 
-Create Date: 2024-07-10 17:39:11.991180
+Create Date: 2024-07-11 16:58:24.713769
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '695b9ece9741'
+revision = '8e85056201be'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,7 +42,6 @@ def upgrade():
     sa.Column('model', sa.String(length=255), nullable=False),
     sa.Column('year', sa.Integer(), nullable=False),
     sa.Column('price_per_day', sa.Numeric(), nullable=False),
-    sa.Column('availability_status', sa.Boolean(), nullable=False),
     sa.Column('car_image_url', sa.String(length=255), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['car_owners.id'], name=op.f('fk_cars_owner_id_car_owners')),

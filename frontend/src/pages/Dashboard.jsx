@@ -8,7 +8,7 @@ function Dashboard()
   
   const {cars} = useContext(CarContext)
 
-  console.log(cars)
+  console.log("name", cars)
 
  
   return (

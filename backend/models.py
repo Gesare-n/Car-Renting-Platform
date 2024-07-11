@@ -49,7 +49,7 @@ class Car(db.Model, SerializerMixin):
     model = db.Column(db.String(255), nullable=False)
     year = db.Column(db.Integer, nullable=False)
     price_per_day = db.Column(db.Numeric, nullable=False)
-    availability_status = db.Column(db.String(255), nullable=False, default=True)
+    # availability_status = db.Column(db.String(255), nullable=False, default=True)
     car_image_url = db.Column(db.String(255), nullable=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('car_owners.id'), nullable=False)    
     bookings = db.relationship('Booking', backref='car', lazy=True)
