@@ -5,7 +5,7 @@ export default function
   return (
     <div className='grid bg-gray-100 mx-auto md:grid-cols-2 pt-3'>
       <div className='mt-7 flex justify-center'>
-        <img className='h-[70vh]' src='https://i.pinimg.com/564x/a8/a2/80/a8a280e5b151fa9039000a04e9e9ccec.jpg'/>
+        <img className='h-[60vh]' src='https://i.pinimg.com/564x/a8/a2/80/a8a280e5b151fa9039000a04e9e9ccec.jpg'/>
       </div>
       <div className=''>
         <p className='p-10 mt-10 text-center text-xl mx-10 italic'>Luxoride is an upcoming car hire company set to revolutionize the car rental

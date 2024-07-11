@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import Landing from '../components/Landing'
 import { UserContext } from '../context/UserContext'
+import AboutUs from '../components/AboutUs'
 
 export default function
 () {
@@ -9,6 +10,7 @@ export default function
   return (
     <div>
        <Landing />
+       <AboutUs/>
        {currentUser}
     </div>
   )

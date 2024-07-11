@@ -198,6 +198,81 @@ def delete_user(id):
     db.session.delete(user)
     db.session.commit()
     return jsonify({"success": "User deleted successfully"}), 200
+# CarOwner operations
+
+# Create Car Owner
+@app.route('/carowners', methods=['POST'])
+@jwt_required()
+def create_car_owner():
+    current_user_id = get_jwt_identity()
+    current_user = User.query.get(current_user_id)
+    
+    if not current_user.is_carowner:
+        return jsonify({"error": "Only car owners can create car owner profiles"}), 401
+
+    data = request.get_json()
+    new_car_owner = CarOwner(
+        user_id=current_user_id,
+        company_name=data.get('company_name'),
+        company_address=data.get('company_address')
+    )
+    db.session.add(new_car_owner)
+    db.session.commit()
+    return jsonify({'success': 'Car owner profile created successfully'}), 201
+
+# Get Car Owner
+@app.route('/carowners/<int:id>', methods=['GET'])
+@jwt_required()
+def get_car_owner(id):
+    car_owner = CarOwner.query.get(id)
+    if car_owner is None:
+        return jsonify({"error": "Car owner not found"}), 404
+
+    car_owner_data = {
+        'id': car_owner.id,
+        'user_id': car_owner.user_id,
+        'company_name': car_owner.company_name,
+        'company_address': car_owner.company_address
+    }
+    return jsonify(car_owner_data), 200
+
+# Update Car Owner
+@app.route('/carowners/<int:id>', methods=['PUT'])
+@jwt_required()
+def update_car_owner(id):
+    current_user_id = get_jwt_identity()
+    current_user = User.query.get(current_user_id)
+    
+    if not current_user.is_carowner:
+        return jsonify({"error": "Only car owners can update car owner profiles"}), 401
+
+    car_owner = CarOwner.query.get(id)
+    if car_owner is None:
+        return jsonify({"error": "Car owner not found"}), 404
+
+    data = request.get_json()
+    car_owner.company_name = data.get('company_name', car_owner.company_name)
+    car_owner.company_address = data.get('company_address', car_owner.company_address)
+    db.session.commit()
+    return jsonify({"success": "Car owner profile updated successfully"}), 200
+
+# Delete Car Owner
+@app.route('/carowners/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_car_owner(id):
+    current_user_id = get_jwt_identity()
+    current_user = User.query.get(current_user_id)
+    
+    if not current_user.is_carowner:
+        return jsonify({"error": "Only car owners can delete car owner profiles"}), 401
+
+    car_owner = CarOwner.query.get(id)
+    if car_owner is None:
+        return jsonify({"error": "Car owner not found"}), 404
+
+    db.session.delete(car_owner)
+    db.session.commit()
+    return jsonify({"success": "Car owner profile deleted successfully"}), 200
 
 
 # BOOKINGS
