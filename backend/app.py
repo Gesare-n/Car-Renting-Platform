@@ -159,13 +159,47 @@ def update_car(id):
         car.name = data.get('name', car.name)
         car.model = data.get('model', car.model)
         car.year = data.get('year', car.year)
-        car.price_per_day = data.get('price_per_day', car.price_per_day)
-        car.availability_status = data.get('availability_status', car.availability_status)
+        car.price_per_day = data.get('price_per_day', car.price_per_day)        
         car.car_image_url = data.get('car_image_url', car.car_image_url)
         db.session.commit()
         return jsonify({"success": "Car updated successfully"}), 200
     else:
         return jsonify({"error": "You are not authorized to view this resource"}), 401
+    
+@app.route('/cars/<int:id>', methods=['GET'])
+@jwt_required()
+def get_car(id):
+    car = Car.query.get(id)
+    if car is None:
+        return jsonify({"error": "Car not found"}), 404
+    
+    car_data = {
+        'id': car.id,
+        'name': car.name,
+        'model': car.model,
+        'year': car.year,
+        'price_per_day': car.price_per_day,
+        # 'availability_status': car.availability_status,        
+        'car_image_url': car.car_image_url        
+    }
+    return jsonify(car_data), 200
+    
+@app.route('/cars/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_car(id):
+    current_user_id= get_jwt_identity()
+    current_user = User.query.get(current_user_id)
+    
+    if current_user.is_carowner == "true":
+        car = Car.query.get(id)
+        if car is None:
+            return jsonify({"error": "Car not found"}), 404
+        db.session.delete(car)
+        db.session.commit()
+        return jsonify({"success": "Car deleted successfully"}), 200
+    else:
+        return jsonify({"error": "You are not authorized to view this resource"}), 401
+
 
 
 @app.route('/users', methods=['PUT'])

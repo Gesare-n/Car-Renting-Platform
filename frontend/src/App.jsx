@@ -34,6 +34,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/updateuser' element={<UpdateUser />} />
+          <Route path='/updatecar' element={<UpdateCar />} />
 
           <Route path="*" element={<NoPage />} />
         </Route>

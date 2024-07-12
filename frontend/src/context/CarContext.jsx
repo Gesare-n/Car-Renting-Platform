@@ -11,7 +11,7 @@ export const CarProvider = ({ children }) =>
    const nav = useNavigate()
    const {auth_token} = useContext(UserContext)
    
-
+   const [car, setCar] = useState()
    const [cars, setCars] = useState([])
  //fetch available cars
    useEffect(()=>{
@@ -26,15 +26,79 @@ export const CarProvider = ({ children }) =>
           setCars(res)
        });
    }, [auth_token])
-
-
+   const singleCar = () => {
+     fetch(`http://localhost:5000/cars/${car.id}`, {
+         headers: {
+           'Content-type': 'application/json',
+           "Authorization": `Bearer ${auth_token}`
+         },
+       })
+      .then((response) => response.json())
+      .then((res) => {
+         console.log(res)
+          setCar(res)
+       });
+   }
       
-  //  const update_car = (id, car_model, year, availability_status, price, car_image_url) => {
-  //      fetch(`http://localhost:5000/cars/${id}`, {
-  //          method: 'PUT',
-  //          body: JSON.stringify({
-  //              car_model, year, availability_status, price, car_image_  
+   const update_car = (name, model, year, price_per_day, car_image_url) => {
+       fetch(`http://localhost:5000/cars`, {
+           method: 'PUT',
+           body: JSON.stringify({
+               name :name,
+               model: model, 
+               year: year, 
+               price_per_day: price_per_day, 
+               car_image_url :car_image_url  
+           }),
+           headers:{
+             'Content-type': 'application/json',
+             "Authorization": `Bearer ${auth_token}`
+           },
+      })
+      .then((response)=>response.json())
+      .then((res) =>{
+        
+     if(res.success)
+        {
+            toast.success("Car updated Successfully!")
+            nav("/dashboard")
+        }
+        else if(res.error)
+        {
+            toast.error(res.error)
+        }
+        else {
+            toast.error("An error occured")
+        }
 
+    })}
+
+    const delete_car = ()  =>{
+        fetch(`http://localhost:5000/cars/${car.id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-type': 'application/json',
+              "Authorization": `Bearer ${auth_token}`
+            },
+          })
+        .then((response) => response.json())
+        .then((res) =>{
+            if(res.success)
+            {
+                toast.success(res.success)
+                nav("/dashboard")
+                setCurrentUser(null)
+            }
+            else if(res.error)
+            {
+                toast.error(res.error)
+            }
+            else {
+                toast.error("An error occured")
+            }
+
+        });
+    }     
     
     const add_car = (name, model, year, price_per_day, car_image_url) =>{
         fetch("http://localhost:5000/cars", {
@@ -50,7 +114,7 @@ export const CarProvider = ({ children }) =>
           })
         .then((response) => response.json())
         .then((res) =>{
-            console.log("hey", res)
+            
          if(res.success)
             {
                 toast.success(res.success)
@@ -71,7 +135,8 @@ export const CarProvider = ({ children }) =>
     const contextData ={
         add_car,
         cars,
-        
+        update_car,
+        delete_car,
         
     }
     return(

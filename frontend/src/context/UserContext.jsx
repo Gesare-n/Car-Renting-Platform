@@ -51,6 +51,32 @@ export const UserProvider = ({ children }) =>
         });
     
     }
+    const delete_user = ()  =>{
+        fetch(`http://localhost:5000/users/${currentUser.id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-type': 'application/json',
+              "Authorization": `Bearer ${auth_token}`
+            },
+          })
+        .then((response) => response.json())
+        .then((res) =>{
+            if(res.success)
+            {
+                toast.success(res.success)
+                nav("/login")
+                setCurrentUser(null)
+            }
+            else if(res.error)
+            {
+                toast.error(res.error)
+            }
+            else {
+                toast.error("An error occured")
+            }
+
+        });
+    }
 
        //    Login USER
        const login_user = (email, password) =>{
@@ -89,14 +115,14 @@ export const UserProvider = ({ children }) =>
 
 
        //    Update USER
-       const update_user = (name, profile_image,phone_number, password) =>{
+       const update_user = (name, phone_number, profile_image, password) =>{
         fetch("http://localhost:5000/users", {
             method: 'PUT',
             body: JSON.stringify({
                 name: name,
                 password: password,
                 phone_number: phone_number,
-                profile_image: profile_image
+                profile_image: profile_image,
             }),
             headers: {
               'Content-type': 'application/json',
@@ -185,7 +211,8 @@ export const UserProvider = ({ children }) =>
         register_user,
         login_user,
         update_user,
-        logout
+        logout,
+        delete_user
 
     }
     return (
