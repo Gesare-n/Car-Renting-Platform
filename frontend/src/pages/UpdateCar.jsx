@@ -9,11 +9,11 @@ export default function UpdateEvent()
 { 
   const {currentUser} = useContext(UserContext);
   const {update_car, car} = useContext(CarContext);  
-  const [name, setName] = useState()
-  const [model, setCarModel] = useState()
-  const [year, setYear] = useState()
-  const [price_per_day, setPrice] = useState()
-  const [car_image_url, setCarImage] = useState()
+  const [name, setName] = useState('')
+  const [model, setCarModel] = useState('')
+  const [year, setYear] = useState('')
+  const [price_per_day, setPrice] = useState('')
+  const [car_image_url, setCarImage] = useState('')
 
   const {car_id} = useParams()
 

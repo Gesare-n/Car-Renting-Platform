@@ -122,7 +122,7 @@ export const UserProvider = ({ children }) =>
                 name: name,
                 password: password,
                 phone_number: phone_number,
-                profile_image: profile_image
+                profile_image: profile_image,
             }),
             headers: {
               'Content-type': 'application/json',
