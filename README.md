@@ -5,9 +5,8 @@
 1. [Installation](#installation)
 2. [Usage](#usage)
 3. [Features](#features)
-4. [Contributing](#contributing)
-5. [Developers](#developers)
-6. [License](#license)
+4. [Developers](#developers)
+5. [License](#license)
 
 ## Introduction
 
@@ -52,7 +51,20 @@ The Car Renting Platform is designed to provide users with a seamless experience
    npm start
 
 This will start the development server, and you can view the application in your browser at [http://localhost:3000](http://localhost:3000).
-## Developers ✒️
+
+## Features
+ - Browse Cars
+- Users can view available cars with details like model, year, and price per day.
+
+- Book Cars
+- Users can select a car, specify rental details, and make a booking.
+
+- Receive Notifications
+- Users receive notifications confirming successful bookings.
+
+- Manage Profiles
+ - Users can manage their profiles, update information, and view booking history.
+## Developers 
 - Nicole Gesare Onyiego [@Gesare-n](https://github.com/Gesare-n)
 - Sam Wambeo [@Wambeo](https://github.com/Wambeo)
 - Sam Felix [@samfelix61](https://github.com/samfelix61)
