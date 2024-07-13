@@ -1,10 +1,12 @@
-<<<<<<< HEAD
 import React, { useContext, useState } from 'react';
 import { CarContext } from '../context/CarContext';
+import { UserContext } from '../context/UserContext';
+import { Link } from 'react-router-dom';
 import RentCarForm from '../components/RentCarForm';
 
 function Dashboard() {
-  const { cars } = useContext(CarContext);
+  const { cars, delete_car } = useContext(CarContext);
+  const { currentUser } = useContext(UserContext);
   const [selectedCar, setSelectedCar] = useState(null);
 
   const handleBookCar = (car) => {
@@ -24,19 +26,18 @@ function Dashboard() {
   const closeModal = () => {
     setSelectedCar(null);
   };
-=======
-import React, { useContext } from 'react'
-import { CarContext } from '../context/CarContext'
-import { UserContext } from '../context/UserContext'
-import { Link } from 'react-router-dom'
 
-function Dashboard() 
-{
-  const {currentUser} = useContext(UserContext)
-  
-  const {cars, delete_car} = useContext(CarContext)
+  const updateCar = (carId) => {
+    // Example function placeholder
+    console.log(`Updating car with ID ${carId}`);
+    // Implement update logic as needed
+  };
 
->>>>>>> origin/main
+  const handleSubmit = (carId) => {
+    // Example function placeholder
+    console.log(`Renting car with ID ${carId}`);
+    // Implement rent logic as needed
+  };
 
   return (
     <div className='py-8'>
@@ -87,34 +88,30 @@ function Dashboard()
                   Update Status
                 </button>
               </div>
-<<<<<<< HEAD
+              {currentUser && currentUser.is_carowner ? (
+                <Link
+                  to='/updatecar'
+                  type='button'
+                  onClick={() => updateCar(car.id)}
+                  className='inline-block rounded bg-blue-700 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong'
+                >
+                  Update Car
+                </Link>
+              ) : (
+                <button
+                  type='button'
+                  onClick={() => handleSubmit(car.id)}
+                  className='inline-block rounded bg-green-700 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong ml-2'
+                >
+                  Rent Car
+                </button>
+              )}
             </div>
           ))
         ) : (
           <p>No cars available</p>
         )}
       </div>
-=======
-              {currentUser && currentUser.is_carowner== "true" ?
-              
-              <Link to ='/updatecar'
-                type="button" onClick = {()=> update_car(car.id)}
-                className="inline-block rounded bg-blue-700 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-              >
-                Update Car
-              </Link>
-             
-              :
-              <button
-              type="button" onClick = {()=> handleSubmit(car.id)}
-              className="inline-block rounded bg-green-700 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-            >
-              Rent Car
-            </button>
-              }
-          </div>
-        </div>
->>>>>>> origin/main
 
       {/* Render RentCarForm if selectedCar is not null */}
       {selectedCar && (

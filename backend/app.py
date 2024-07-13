@@ -10,7 +10,7 @@ bcrypt = Bcrypt()
 
 app = Flask(__name__)  
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///car.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://cars_db_tiaz_user:TV7GLVcGWMDDKPOiylvVSLhpWfjnVQE9@dpg-cq988mbv2p9s73cf6r40-a.oregon-postgres.render.com/cars_db_tiaz'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
 
