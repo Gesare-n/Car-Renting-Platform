@@ -1,10 +1,15 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useContext } from 'react';
 =======
 import React, { useContext, useState } from 'react';
 import { CarContext } from '../context/CarContext';
 >>>>>>> 572fa09 (Backend)
+=======
+import React, { useContext, useState } from 'react';
+import { CarContext } from '../context/CarContext';
+>>>>>>> 572fa0912f868ce62eb5526334a73828377e0669
 import { UserContext } from '../context/UserContext';
 import { Link } from 'react-router-dom';
 import RentCarForm from '../components/RentCarForm';
@@ -14,7 +19,10 @@ const Dashboard = ({ cars }) => {
 =======
 function Dashboard() {
   const { cars, delete_car } = useContext(CarContext);
+<<<<<<< HEAD
 >>>>>>> 572fa09 (Backend)
+=======
+>>>>>>> 572fa0912f868ce62eb5526334a73828377e0669
   const { currentUser } = useContext(UserContext);
   const [selectedCar, setSelectedCar] = useState(null);
 
@@ -36,7 +44,10 @@ function Dashboard() {
     setSelectedCar(null);
   };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 572fa0912f868ce62eb5526334a73828377e0669
 
   const updateCar = (carId) => {
     // Example function placeholder
@@ -49,7 +60,10 @@ function Dashboard() {
     console.log(`Renting car with ID ${carId}`);
     // Implement rent logic as needed
   };
+<<<<<<< HEAD
 >>>>>>> 572fa09 (Backend)
+=======
+>>>>>>> 572fa0912f868ce62eb5526334a73828377e0669
 
   return (
     <div className='py-8'>
@@ -112,7 +126,10 @@ function Dashboard() {
                 </button>
               </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 572fa0912f868ce62eb5526334a73828377e0669
               {currentUser && currentUser.is_carowner ? (
                 <Link
                   to='/updatecar'
@@ -131,7 +148,10 @@ function Dashboard() {
                   Rent Car
                 </button>
               )}
+<<<<<<< HEAD
 >>>>>>> 572fa09 (Backend)
+=======
+>>>>>>> 572fa0912f868ce62eb5526334a73828377e0669
             </div>
           ))
         ) : (
