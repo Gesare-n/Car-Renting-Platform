@@ -130,7 +130,7 @@ This will start the development server, and you can view the application in your
 ## Developers 
 - Nicole Gesare Onyiego [@Gesare-n](https://github.com/Gesare-n)
 - Sam Wambeo [@Wambeo](https://github.com/Wambeo)
-- Sam Felix [@samfelix61](https://github.com/samfelix61)
+- Samfelix Randa [@samfelix61](https://github.com/samfelix61)
 - Jean Waweru [@JeanWaweru](https://github.com/JeanWaweru)
 
 ## License
