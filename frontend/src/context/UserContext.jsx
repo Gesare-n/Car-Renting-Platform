@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import {server_url} from '../../config'
 
 
 export const UserContext = createContext()
@@ -19,7 +20,7 @@ export const UserProvider = ({ children }) =>
    //    REGISTER USER
     const register_user = (name,email, profile_image, phone_number, is_carowner, password) =>{
         
-        fetch("http://localhost:5000/users", {
+        fetch(`${server_url}/users`, {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -35,6 +36,7 @@ export const UserProvider = ({ children }) =>
           })
         .then((response) => response.json())
         .then((res) =>{
+            console.log(res);
          if(res.success)
             {
                 toast.success(res.success)
@@ -48,11 +50,13 @@ export const UserProvider = ({ children }) =>
                 toast.error("An error occured")
             }
 
-        });
+        }).catch(e=>{console.log(e)
+
+        })
     
     }
     const delete_user = ()  =>{
-        fetch(`http://localhost:5000/users/${currentUser.id}`, {
+        fetch(`${server_url}/users/${currentUser.id}`, {
             method: 'DELETE',
             headers: {
               'Content-type': 'application/json',
@@ -80,7 +84,8 @@ export const UserProvider = ({ children }) =>
 
        //    Login USER
        const login_user = (email, password) =>{
-        fetch("http://localhost:5000/login", {
+         console.log(email,password)
+        fetch(`${server_url}/login`, {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
@@ -92,7 +97,7 @@ export const UserProvider = ({ children }) =>
           })
         .then((response) => response.json())
         .then((res) =>{
-            // console.log(res)
+            console.log(res)
          if(res.access_token)
             {
                 setAuth_token(res.access_token)
@@ -116,7 +121,7 @@ export const UserProvider = ({ children }) =>
 
        //    Update USER
        const update_user = (name, phone_number, profile_image, password) =>{
-        fetch("http://localhost:5000/users", {
+        fetch(`${server_url}/users`, {
             method: 'PUT',
             body: JSON.stringify({
                 name: name,
@@ -149,7 +154,7 @@ export const UserProvider = ({ children }) =>
 
     // Logout
     const logout = () =>{
-        fetch("http://localhost:5000/logout", {
+        fetch(`${server_url}/logout` ,{
             method: 'DELETE',
             headers: {
               'Content-type': 'application/json',
@@ -181,7 +186,7 @@ export const UserProvider = ({ children }) =>
 
     useEffect(()=>{
         if(auth_token){
-                fetch("http://localhost:5000/current_user", {
+                fetch(`${server_url}/current_user`, {
                     headers: {
                     'Content-type': 'application/json',
                     'Authorization': `Bearer ${auth_token}`

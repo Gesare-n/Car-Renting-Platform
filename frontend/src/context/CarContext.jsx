@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react"
 import { UserContext } from "./UserContext"
 import { toast } from 'react-toastify'
 import { useNavigate } from "react-router-dom"
+import {server_url} from '../../config'
 
 
 export const CarContext = createContext()
@@ -15,7 +16,7 @@ export const CarProvider = ({ children }) =>
    const [cars, setCars] = useState([])
  //fetch available cars
    useEffect(()=>{
-       fetch("http://localhost:5000/cars", {
+       fetch(`${server_url}/cars`, {
            headers: {
              'Content-type': 'application/json',
              "Authorization": `Bearer ${auth_token}`
@@ -27,7 +28,7 @@ export const CarProvider = ({ children }) =>
        });
    }, [auth_token])
    const singleCar = () => {
-     fetch(`http://localhost:5000/cars/${car.id}`, {
+     fetch(`${server_url}/cars/${car.id}`, {
          headers: {
            'Content-type': 'application/json',
            "Authorization": `Bearer ${auth_token}`
@@ -41,7 +42,7 @@ export const CarProvider = ({ children }) =>
    }
       
    const update_car = (name, model, year, price_per_day, car_image_url) => {
-       fetch(`http://localhost:5000/cars`, {
+       fetch(`${server_url}/cars`, {
            method: 'PUT',
            body: JSON.stringify({
                name :name,
@@ -74,7 +75,7 @@ export const CarProvider = ({ children }) =>
     })}
 
     const delete_car = ()  =>{
-        fetch(`http://localhost:5000/cars/${car.id}`, {
+        fetch(`${server_url}/cars/${car.id}`, {
             method: 'DELETE',
             headers: {
               'Content-type': 'application/json',
@@ -101,7 +102,7 @@ export const CarProvider = ({ children }) =>
     }     
     
     const add_car = (name, model, year, price_per_day, car_image_url) =>{
-        fetch("http://localhost:5000/cars", {
+        fetch( `${server_url}/cars`, {
             method: 'POST',
             body: JSON.stringify({
                 name, model, year, price_per_day, car_image_url
