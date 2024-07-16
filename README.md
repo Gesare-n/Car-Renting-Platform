@@ -124,6 +124,9 @@ This will start the development server, and you can view the application in your
 
 - Receive Notifications
 - Users receive notifications confirming successful bookings.
+  ## Links to deployed Backend and Frontend:
+    -[Frontend]_(https://669651e36a89c985d304c5a8--chipper-bienenstitch-d1c7e8.netlify.app/)
+    -[Backend]_(https://car-renting-platform.onrender.com)
 
 - Manage Profiles
  - Users can manage their profiles, update information, and view booking history.
